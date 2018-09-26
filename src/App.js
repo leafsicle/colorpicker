@@ -7,43 +7,67 @@ class App extends Component {
     super(props); 
     
     this.state ={
-      hue: 34
+      hue: 200,
+      saturation: 50,
+      light: 50
     }
   }
-  hueSliderMove = () => {
-    console.log ("I changed")
+
+  hueSliderMove = event => {
+    let hue=event.target.value;
+
+    this.setState((state,props) =>{
+      return{hue:hue
+      }
+    })
   }
-  saturationSliderMove = () => {
-    console.log ("faded")
+  saturationSliderMove = event => {
+    let saturation=event.target.value;
+
+    this.setState((state,props) =>{
+      return{
+        saturation:saturation
+      }
+    })
   }
-  lightSliderMove = () => {
-    console.log ("lighten up")
+  lightSliderMove = event => {
+    let light=event.target.value;
+
+    this.setState((state,props) =>{
+      return{
+        light:light
+      }
+    })
   }
-  alphaSliderMove = () => {
-    console.log ("I am the alpha")
-  }
+  // alphaSliderMove = () => {
+  //   console.log ("I am the alpha")
+  // }
+
+  
   render() {
     return (
-        <body>
+        <div>
           <header>Best Color Blender</header>
           <main className="workspace">
             <aside className= "presentation">
-              <main>HSL</main>
-              <div className="window">this will be a color</div>
+              <main>HSL({this.state.hue}, {this.state.saturation}%, {this.state.light}%)</main>
+            
+             <div className="window" style={{backgroundColor:`hsl(${this.state.hue}, ${this.state.saturation}%, ${this.state.light}%)`}} />
+           
             </aside>
 
              <aside className="slider-container">
               HUE
-              <input onChange={this.hueSliderMove} type="range" min="0" max="360" class="slider hue"/>
+              <input onChange={this.hueSliderMove} type="range" min="0" max="360" value={this.state.hue} className="slider hue"/>
               SATURATION
-              <input onChange={this.saturationSliderMove} type="range" min="0" max="100" class="slider saturation"/>
+              <input onChange={this.saturationSliderMove} type="range" min="0" max="100" className="slider saturation"/>
               LIGHTNESS
-              <input onChange={this.lightSliderMove} type="range" min="0" max="100" class="slider lightness"/>
+              <input onChange={this.lightSliderMove} type="range" min="0" max="100" className="slider lightness"/>
               ALPHA
-              <input onChange={this.alphaSliderMove} type="range" min="0" max="100" class="slider lightness"/>
+              <input onChange={this.alphaSliderMove} type="range" min="0" max="100" className="slider lightness"/>
             </aside>
           </main>
-        </body>
+        </div>
       );
   }
 }
