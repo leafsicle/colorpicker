@@ -1,103 +1,103 @@
 import React, { Component } from 'react'
 import './index.css'
 class App extends Component {
-	constructor(props) {
-		super(props)
+  constructor(props) {
+    super(props)
 
-		this.state = {
-			hue: 200,
-			saturation: 50,
-			light: 50
-		}
-	}
-	hueSliderMove = event => {
-		let hue = event.target.value
+    this.state = {
+      hue: this.getRandomColor(),
+      saturation: this.getRandomColor(),
+      light: this.getRandomColor(),
+      alpha: 1,
+    }
+  }
+  getRandomColor = () => {
+    return Math.floor(Math.random() * 255)
+  }
 
-		this.setState((state, props) => {
-			return { hue: hue }
-		})
-	}
-	saturationSliderMove = event => {
-		let saturation = event.target.value
+  hueSliderMove = event => {
+    let hue = event.target.value
 
-		this.setState((state, props) => {
-			return {
-				saturation: saturation
-			}
-		})
-	}
-	lightSliderMove = event => {
-		let light = event.target.value
+    this.setState((state, props) => {
+      return { hue: hue }
+    })
+  }
+  saturationSliderMove = event => {
+    let saturation = event.target.value
 
-		this.setState((state, props) => {
-			return {
-				light: light
-			}
-		})
-	}
-	// alphaSliderMove = () => {
-	//   console.log ("I am the alpha")
-	// }
+    this.setState((state, props) => {
+      return {
+        saturation: saturation,
+      }
+    })
+  }
 
-	render() {
-		return (
-			<div>
-				<header>Best Color Blender</header>
-				<main className="workspace">
-					<aside className="presentation">
-						<main>
-							HSL({this.state.hue}, {this.state.saturation}%, {this.state.light}
-							%)
-						</main>
+  lightSliderMove = event => {
+    let light = event.target.value
+    this.setState((state, props) => {
+      return {
+        light: light,
+      }
+    })
+  }
 
-						<div
-							className="window"
-							style={{
-								backgroundColor: `hsl(${this.state.hue}, ${
-									this.state.saturation
-								}%, ${this.state.light}%)`
-							}}
-						/>
-					</aside>
-					<aside className="slider-container">
-						HUE
-						<input
-							onChange={this.hueSliderMove}
-							type="range"
-							min="0"
-							max="360"
-							value={this.state.hue}
-							className="slider hue"
-						/>
-						SATURATION
-						<input
-							onChange={this.saturationSliderMove}
-							type="range"
-							min="0"
-							max="100"
-							className="slider saturation"
-						/>
-						LIGHTNESS
-						<input
-							onChange={this.lightSliderMove}
-							type="range"
-							min="0"
-							max="100"
-							className="slider lightness"
-						/>
-						ALPHA
-						<input
-							onChange={this.alphaSliderMove}
-							type="range"
-							min="0"
-							max="100"
-							className="slider lightness"
-						/>
-					</aside>
-				</main>
-			</div>
-		)
-	}
+  alphaSliderMove = event => {
+    let alpha = event.target.value
+    this.setState((state, props) => {
+      return {
+        alpha: alpha,
+      }
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <header>Best Color Blender</header>
+        <main
+          className='workspace'
+          style={{
+            backgroundColor: `rgba(${this.state.hue},${this.state.saturation},${this.state.light},${this.state.alpha})`,
+          }}></main>
+        <aside className='slider-container'>
+          <span>Red {this.state.hue}</span>
+          <input
+            onChange={this.hueSliderMove}
+            type='range'
+            min='0'
+            max='255'
+            value={this.state.hue}
+            className='slider hue'
+          />
+          <span>Green {this.state.saturation}</span>
+          <input
+            onChange={this.saturationSliderMove}
+            type='range'
+            min='0'
+            max='255'
+            className='slider saturation'
+          />
+          <span>Blue {this.state.light}</span>
+          <input
+            onChange={this.lightSliderMove}
+            type='range'
+            min='0'
+            max='255'
+            className='slider lightness'
+          />
+          <span>Visibility %{this.state.alpha}</span>
+          <input
+            onChange={this.alphaSliderMove}
+            type='range'
+            min='0'
+            max='1'
+            step='.01'
+            className='slider alpha'
+          />
+        </aside>
+      </div>
+    )
+  }
 }
 
 export default App
