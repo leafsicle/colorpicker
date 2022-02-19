@@ -23,7 +23,6 @@ header {
   border: 3px solid black;
   border-radius: 10px;
   display: flex;
-
   align-items: center;
 }
 
@@ -55,7 +54,7 @@ header {
   -webkit-appearance: none; /* Override default CSS styles */
   appearance: none;
   width: 80%;
-  height: 3px;
+  height: 10px;
   background: #e2fcf6;
   margin: 10px;
 }
@@ -66,5 +65,15 @@ header {
     width: 75%;
     padding: 15px;
     border-radius: 2px;
+    display: flex;
+    justify-content: center;
+  }
+  .slider {
+    -webkit-appearance: none; /* Override default CSS styles */
+    appearance: none;
+    width: 80%;
+    height: 3px;
+    background: #e2fcf6;
+    margin: 10px;
   }
 }

@@ -58,7 +58,10 @@ class App extends Component {
           className='workspace'
           style={{
             backgroundColor: `rgba(${this.state.hue},${this.state.saturation},${this.state.light},${this.state.alpha})`,
-          }}></main>
+          }}>
+          {/* convert the values to hex here */}
+          {/* <span className="hexVal">#</span> */}
+        </main>
         <aside className='slider-container'>
           <span>Red {this.state.hue}</span>
           <input
